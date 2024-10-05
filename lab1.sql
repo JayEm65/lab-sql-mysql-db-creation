@@ -1,4 +1,4 @@
--- Create a new schema for the car dealership
+-- Create a new schema for the car dealership if needed
 CREATE SCHEMA IF NOT EXISTS schema_lab;
 
 -- Create the database for the car dealership
@@ -47,3 +47,27 @@ CREATE TABLE IF NOT EXISTS invoices (
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id),  -- Establishes relationship with customers table
     FOREIGN KEY (staff_id) REFERENCES salespersons(staff_id)    -- Establishes relationship with salespersons table
 );
+
+-- Data Seeding: Insert initial data into the tables
+
+INSERT INTO cars (vin, manufacturer, model, year, color) VALUES
+('1HGCM82633A123456', 'Honda', 'Accord', 2020, 'Red'),
+('1G1ZB5ST8HF123456', 'Chevrolet', 'Malibu', 2019, 'Blue');
+
+INSERT INTO customers (name, phone_number, email, address, city, state_province, country, zip_postal_code) VALUES
+('John Doe', '555-1234', 'john@example.com', '123 Elm St', 'Springfield', 'IL', 'USA', '62701'),
+('Jane Smith', '555-5678', 'jane@example.com', '456 Oak St', 'Shelbyville', 'IL', 'USA', '62702');
+
+INSERT INTO salespersons (name, store) VALUES
+('Alice Johnson', 'Downtown'),
+('Bob Brown', 'Uptown');
+
+INSERT INTO invoices (date, car_vin, customer_id, staff_id) VALUES
+('2024-10-01', '1HGCM82633A123456', 1, 1),
+('2024-10-02', '1G1ZB5ST8HF123456', 2, 2);
+
+-- Data Deletion: Example of how to delete a record from the cars table
+-- DELETE FROM cars WHERE vin = '1HGCM82633A123456';
+
+-- Data Updates: Example of how to update a customer's email
+-- UPDATE customers SET email = 'newemail@example.com' WHERE customer_id = 1;
